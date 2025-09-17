@@ -10,10 +10,17 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className="bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50"
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-green-400 font-bold text-lg">
-          AI Kisan Mitra
+      <div className="max-w-6xl mx-auto px-3 py-3 flex justify-between items-center">
+        <Link to="/" className="flex items-center gap-1">
+          {/* Icon */}
+          <img className="size-10" src="/plant.png" alt="" />
+
+          {/* Text */}
+          <span className="font-semibold text-lg text-white">
+          Kisan Mitra
+          </span>
         </Link>
+
         <div className="flex gap-4">
           <Link to="/expert" className="hover:text-green-400">
             Ask Expert
