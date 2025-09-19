@@ -36,7 +36,7 @@ export default function Home() {
     <div className="h-[calc(100vh-64px)] flex flex-col bg-gray-900">
       {/* Header */}
       <div className="p-4 bg-gray-800 flex justify-between items-center border-b border-gray-700">
-        <h1 className="text-green-400 font-bold">🤖 AI Kisan Mitra</h1>
+        <h1 className="text-green-400 font-bold">KisanMitra</h1>
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}

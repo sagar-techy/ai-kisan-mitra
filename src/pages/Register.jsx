@@ -32,7 +32,7 @@ export default function Register() {
         </h2>
         <p className="text-gray-400 mb-6">
           Join{" "}
-          <span className="text-green-400 font-medium">AI Kisan Mitra</span> to
+          <span className="text-green-400 font-medium">KisanMitra</span> to
           get instant farming advice via text, voice, or images in your
           language.
         </p>

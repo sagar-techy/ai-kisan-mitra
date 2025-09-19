@@ -17,7 +17,7 @@ export default function Navbar() {
 
           {/* Text */}
           <span className="font-semibold text-lg text-white">
-          Kisan Mitra
+          KisanMitra
           </span>
         </Link>
 
