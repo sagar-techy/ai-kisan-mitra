@@ -1,17 +1,17 @@
 // src/services/AuthContext.jsx
-import { createContext, useEffect, useMemo, useState } from 'react';
-import { auth } from './firebase';
+import { createContext, useEffect, useMemo, useState } from "react";
+import { auth } from "./firebase";
 import {
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
-} from 'firebase/auth';
+} from "firebase/auth";
 
 const AuthContext = createContext(null);
 
-const SESSION_KEY = 'akm_session_started_at';
+const SESSION_KEY = "akm_session_started_at";
 const MILLIS_24H = 24 * 60 * 60 * 1000;
 
 export function AuthProvider({ children }) {
@@ -47,13 +47,17 @@ export function AuthProvider({ children }) {
       loading,
       // Sign up and start a 24h session immediately, then redirect caller
       async register({ name, email, password }) {
-        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const cred = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
         if (name) {
           try {
             await updateProfile(cred.user, { displayName: name });
           } catch (e) {
             // Non-fatal if profile update fails
-            console.warn('Profile update failed', e);
+            console.warn("Profile update failed", e);
           }
         }
         localStorage.setItem(SESSION_KEY, String(Date.now()));
@@ -76,11 +80,7 @@ export function AuthProvider({ children }) {
     [user, loading]
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export default AuthContext;

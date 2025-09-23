@@ -1,8 +1,8 @@
 // src/components/ProtectedRoute.jsx
-import { Navigate, useLocation } from 'react-router-dom';
-import useAuth from '../services/useAuth';
+import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../services/useAuth";
 
-const SESSION_KEY = 'akm_session_started_at';
+const SESSION_KEY = "akm_session_started_at";
 
 export default function ProtectedRoute({ children }) {
   const { user, loading, isSessionExpired } = useAuth();
@@ -19,7 +19,7 @@ export default function ProtectedRoute({ children }) {
   if (!user) {
     // If there's never been a session, send to register; else to login
     const hasSession = Boolean(localStorage.getItem(SESSION_KEY));
-    const to = hasSession && isSessionExpired() ? '/login' : '/register';
+    const to = hasSession && isSessionExpired() ? "/login" : "/register";
     return <Navigate to={to} replace state={{ from: location }} />;
   }
 
