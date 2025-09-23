@@ -1,27 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "motion/react";
-import authService from "../services/authService";
+import { motion as Motion } from "motion/react";
+import useAuth from "../services/useAuth";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await authService.register({ name, email, password });
-      navigate("/login");
+      await register({ name, email, password });
+      // After first registration, go straight to home (protected)
+      navigate("/");
     } catch (err) {
-      alert("Register failed");
+      alert("Register failed: " + (err?.message || "Unknown error"));
     }
   };
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gray-900 flex justify-center items-center px-4">
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -59,13 +61,13 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <motion.button
+          <Motion.button
             whileHover={{ scale: 1.05 }}
             type="submit"
             className="w-full bg-gradient-to-r from-green-500 to-green-400 text-gray-900 font-medium py-2 rounded-lg shadow-md"
           >
             Register
-          </motion.button>
+          </Motion.button>
         </form>
 
         <p className="text-sm text-gray-400 mt-6 text-center">
@@ -77,7 +79,7 @@ export default function Register() {
             Login here
           </span>
         </p>
-      </motion.div>
+      </Motion.div>
     </div>
   );
 }

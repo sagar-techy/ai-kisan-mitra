@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import ChatList from "../components/ChatList";
 
 export default function History() {
